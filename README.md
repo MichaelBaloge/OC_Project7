@@ -14,9 +14,14 @@ Enfin, le déploiement sur le web des deux applications doit se faire dans un ca
 L'analyse exploratoire permet déjà de faire apparaître des indicateurs plus ou moins importants, lorsque l'on regarde les corrélations avec les défauts de paiement notamment.
 Etapes du nettoyage et du feature engineering :
 - suppression des features inconnues pour plus de 60% des clients références --> réduction à 70 features
-- suppression des outilers en "applatissant" à 
+- suppression des outilers en "applatissant" entre 1er quartile - 1,5*(écart interquartile) et 3ème quartile + 1,5*(écart interquartile)
+- complétion des valeurs inconnues en remplaçant par la moyenne pour les features numériques et par le mode pour les features catégorielles
+- LabelEncoding des features catégorielles dans le cadre de la préparation à la modélisation
+- observation des corrélations après transformation
 
 ### Modélisation et MLFlow
+Mise en place d'un processus de MLFlow pour enregistrer les expériences (modèles, éventuelles pipelines de transformations supplémentaires, paramètres, hyperparamètres, temps d'entraînement, temps de validation, différentes métriques de validations : AUC, Accuracy etc.)
+
 
 ### Analyse du Data Drift
 
