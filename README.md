@@ -41,10 +41,28 @@ Pour **l'explicabilité globale, les Shap values des features** sont préférée
 S'agissant de **l'explicabilité locale**, la problématique réside dans le fait qu'en théorie, les nouveaux clients ne sont pas déjà connus. Ainsi, pour utiliser Shap, il faudrait recalculer systématiquement les Shap values sur le dataset d'entraînement, auquel on ajouterait le nouveau client, afin d'obtenir sa position. Cela nécessiterait un temps de calcul trop lourd pour une bonne expérience utilisateur. Par conséquent, **la méthode Lime**, qui permet de ne calculer l'explicabilité globale qu'une fois et d'effectuer l'explicabilité locale directement à partir de l'explainer obtenu est retenue pour l'application.
 
 ### Analyse du Data Drift
-
+Avec la librairie Evidency, le drift peut être mesuré pour **évaluer la pertinence du modèle dans le temps**. Cette analyse peut être effectuée à chaque fois qu'on enregistre un certain nombre de nouveaux clients (nombre ou période à déterminer). Ici on effectue l'analyse sur les données connues des 50 000 nouveaux clients que l'on compare aux 300 000 initiaux (références).  
+Malgré une modification légèrement significative de la distribution des nouveaux clients comparée à celle des clients références pour 9 indicateurs, le score du drift reste très faible et l'on peut considérer qu'il n'y a pas de Data Drift dans notre cas présent, comme le montre le rapport, donc **pas besoin de chercher un nouveau modèle à entraîner**. On peut le "vérifier" intuitivement en regardant le "rang" des features concernées dans l'explicabilité globale.  
+A noter que dans notre cas, compte tenu du fait que la modélisation est effectuée sur 70 indicateurs, on a réduit les données comparées à ces indicateurs (il n'y a pas non plus de drift lorsque l'on les conserve tous (voir le deuxième rapport).
 
 ### Description du dossier API
+Le choix a été fait de construire une **API Flask**.  
+En plus du dossier (fichier Yaml) de workflows, décrivant les différentes tâches à effectuer, 6 fichiers sont nécessaires :
+- **le script python de l'API** détaillé plus bas
+- **les deux datasets** contenant respectivement les informations des clients références et celles des nouveaux clients. Ces datasets sont amenés à changer avec le temps et ne seront modifiés qu'ici.
+- **le fichier joblib dans lequel le modèle entraîné est enregistré**. Si le modèle change, le fichier sera changé.
+- **le fichier requirements.txt contenant les librairies nécessaires** à contruire l'environnement dans lequel l'API peut fonctionner (à modifier en cas d'utilisation de nouveaux modèles de références par exemple).
+- **un fichier startup.sh, que la plateforme d'hébergement est forcée à lancer au démarrage** de l'application (configuration personnalisée sur l'hébergeur). Ce fichier est nécessaire car il oblige à installer un module supplémentaire nécessaire au fonctionnement du modèle, et que l'hébergeur ne reconnaît pas naturellement.
 
+Concernant le script de l'API,** 6 "routes" sont mises en place** pour interagir avec l'utilisateur de l'application (interface du conseiller clientèle).
+**Deux méthodes GET** pour obtenir :
+- la liste des ids des nouveaux clients pour vérifier que le client est bien enregistré
+- la liste des features qui sont utilisées pour la modélisation. Si jamais le modèle devait être revu, cette liste pourrait être amenée à évoluer sans pour autant affecter le script de l'interface utilisateur.
+**Quatre méthodes POST** pour :
+- envoyer le numéro du client sélectionné et recevoir ses informations (données pour les indicateurs)
+- envoyer le numéro du client sélectionné et recevoir la prédiction (probabilité d'insolvabilité, décision, explicabilité Lime)
+- envoyer, pour un client sélectionné, des données modifiées pour certains indicateurs choisis par le conseiller clientèle, et recevoir la nouvelle prédiciton
+- envoyer une liste d'indicateurs et recevoir les données des clients références pour ces indicateurs, ainsi que leur probabilité d'insolvabilité si on leur appliquait la modélisation.
 
 ### Description du dossier Streamlit
 
