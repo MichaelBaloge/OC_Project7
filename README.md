@@ -47,17 +47,19 @@ A noter que dans notre cas, compte tenu du fait que la modélisation est effectu
 
 ### Description du dossier API
 Le choix a été fait de construire une **API Flask**.  
-En plus du dossier (fichier Yaml) de workflows, décrivant les différentes tâches à effectuer, 6 fichiers sont nécessaires :
+En plus du dossier (fichier Yaml) de workflows, décrivant les différentes tâches à effectuer, 7 fichiers sont nécessaires :
 - **le script python de l'API** détaillé plus bas
 - **les deux datasets** contenant respectivement les informations des clients références et celles des nouveaux clients. Ces datasets sont amenés à changer avec le temps et ne seront modifiés qu'ici.
+- **le fichier png contenant l'image de l'explicabilité globale Shap**
 - **le fichier joblib dans lequel le modèle entraîné est enregistré**. Si le modèle change, le fichier sera changé.
 - **le fichier requirements.txt contenant les librairies nécessaires** à contruire l'environnement dans lequel l'API peut fonctionner (à modifier en cas d'utilisation de nouveaux modèles de références par exemple).
 - **un fichier startup.sh, que la plateforme d'hébergement est forcée à lancer au démarrage** de l'application (configuration personnalisée sur l'hébergeur). Ce fichier est nécessaire car il oblige à installer un module supplémentaire nécessaire au fonctionnement du modèle, et que l'hébergeur ne reconnaît pas naturellement.
 
-Concernant le script de l'API,** 6 "routes" sont mises en place** pour interagir avec l'utilisateur de l'application (interface du conseiller clientèle).
-**Deux méthodes GET** pour obtenir :
+Concernant le script de l'API,** 7 "routes" sont mises en place** pour interagir avec l'utilisateur de l'application (interface du conseiller clientèle).
+**Trois méthodes GET** pour obtenir :
 - la liste des ids des nouveaux clients pour vérifier que le client est bien enregistré
 - la liste des features qui sont utilisées pour la modélisation. Si jamais le modèle devait être revu, cette liste pourrait être amenée à évoluer sans pour autant affecter le script de l'interface utilisateur.
+- l'image de l'explicabilté globale
 **Quatre méthodes POST** pour :
 - envoyer le numéro du client sélectionné et recevoir ses informations (données pour les indicateurs)
 - envoyer le numéro du client sélectionné et recevoir la prédiction (probabilité d'insolvabilité, décision, explicabilité Lime)
@@ -65,7 +67,23 @@ Concernant le script de l'API,** 6 "routes" sont mises en place** pour interagir
 - envoyer une liste d'indicateurs et recevoir les données des clients références pour ces indicateurs, ainsi que leur probabilité d'insolvabilité si on leur appliquait la modélisation.
 
 ### Description du dossier Streamlit
+L'interface utilisateur est une application Streamlit.  
+En plus du dossier (fichier Yaml) de workflows, décrivant les différentes tâches à effectuer, 3 fichiers seulement sont nécessaires :
+- **le script de l'application** détaillé plus bas
+- **le fichier png contenant le logo** de l'organisme de prêt avec l'intitulé de l'interface
+- **le fichier des requirements** limités à l'application
 
+Description de l'expérience utilisateur pour un client :
+- le conseiller est invité à entrer le numéro d'un client et d'entrer pour vérifier que le client existe bien
+- si tel est le cas, il est invité à valider le numéro client pour obtenir un certain nombre d'informations :
+  - les données statiques du client
+  - des menus de sélection pour afficher et éventuellement modifier ou compléter respectivement les informations renseignées et non renseignées
+  - l'explicabilité globale (image png des features importances de Shap) et l'explicabilité locale (retour de l'API des features importances au sens de Lime pour le client)
+  - des graphs montrant, pour 2 indicateurs par défaut (faisant le plus augmenter la probabilité d'insolvabilité pour le client) modifiables, la position du client au regard de sa probabilité au regard des clients références (nuage de points), et, selon la nature de l'indicateur choisi, deux boîtes à moustache ou histogrammes, après application du seuil de décision.
+- l'utilisateur peut alors soit modifier (ou compléter) des informations concernant le client et obtenir les nouvelles prédictions (probabilité, décision et graphs montrant les positions initiales et nouvelles pour les indicateurs modifiés - nuages de points) si jamais ces modifications étaient validées
+- il peut également sélectionner n'importe quel indicateur à afficher. A noter que si 2 sont sélectionnés, un cinquième graph s'affiche (en plus des 2*2) montrant la position du client vis à vis des deux indicateurs, en comparaison des clients références (nuage de points).
+
+NB : l'explicabilité n'est pas toujours évidente, le conseiller doit être formé pour bien comprendre la valeur des indicateurs ainsi que le sens des graphiques (ils ne sont pas tous pertinents...) et savoir restituer l'explication de la décision. Une interrogation à ChatGPT pourrait par exemple être ajoutée pour que soit générée, automatiquement, en fonction de l'explicabilité globale et locale, un texte que lequel il pourrait s'appuyer...
 
 ### Tests et workflow
 
