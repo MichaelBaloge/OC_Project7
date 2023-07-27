@@ -11,6 +11,10 @@ Il a accès à une application (front-end) qui ne contient pas de modèle enregi
 Enfin, le déploiement sur le web des deux applications doit se faire dans un cadre permettant une intégration et amélioration continues.
 
 ### Analyse exploratoire et feature engineering
+L'analyse exploratoire permet déjà de faire apparaître des indicateurs plus ou moins importants, lorsque l'on regarde les corrélations avec les défauts de paiement notamment.
+Etapes du nettoyage et du feature engineering :
+- suppression des features inconnues pour plus de 60% des clients références --> réduction à 70 features
+- suppression des outilers en "applatissant" à 
 
 ### Modélisation et MLFlow
 
