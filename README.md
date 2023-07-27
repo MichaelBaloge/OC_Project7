@@ -36,6 +36,8 @@ Au regard de l'ensemble des métriques, y compris les temps, et en comparant les
 Un pipeline de transformation des features et de modélisation est recréé puis réentraîné et enfin enregistré avec Joblib.
 
 ### Explicabilité globale et locale
+Pour l'explicabilité globale, les Shap values des features sont préférées à l'explicabilité propre du modèle (feature_importance_), en raison de sa plus grande stabilité.
+S'agissant de l'explicabilité locale, la problématique réside dans le fait qu'en théorie, les nouveaux clients ne sont pas déjà connus. Ainsi, pour utiliser Shap, il faudrait recalculer systématiquement les Shap values sur le dataset d'entraînement, auquel on ajouterait le nouveau client, afin d'obtenir sa position. Cela nécessiterait un temps de calcul trop lourd pour une bonne expérience utilisateur. Par conséquent, la méthode Lime, qui permet de ne calculer l'explicabilité globale qu'une fois et d'effectuer l'explicabilité locale directement à partir de l'explainer obtenu est retenue pour l'application.
 
 ### Analyse du Data Drift
 
