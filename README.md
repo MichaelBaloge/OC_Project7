@@ -83,7 +83,7 @@ Description de l'expérience utilisateur pour un client :
 - l'utilisateur peut alors soit modifier (ou compléter) des informations concernant le client et obtenir les nouvelles prédictions (probabilité, décision et graphs montrant les positions initiales et nouvelles pour les indicateurs modifiés - nuages de points) si jamais ces modifications étaient validées
 - il peut également sélectionner n'importe quel indicateur à afficher. A noter que si 2 sont sélectionnés, un cinquième graph s'affiche (en plus des 2*2) montrant la position du client vis à vis des deux indicateurs, en comparaison des clients références (nuage de points).
 
-NB : l'explicabilité n'est pas toujours évidente, le conseiller doit être formé pour bien comprendre la valeur des indicateurs ainsi que le sens des graphiques (ils ne sont pas tous pertinents...) et savoir restituer l'explication de la décision. Une interrogation à ChatGPT pourrait par exemple être ajoutée pour que soit générée, automatiquement, en fonction de l'explicabilité globale et locale, un texte que lequel il pourrait s'appuyer...
+NB : l'explicabilité n'est pas toujours évidente, le conseiller doit être formé pour bien comprendre la valeur des indicateurs ainsi que le sens des graphiques (ils ne sont pas tous pertinents...) et savoir restituer l'explication de la décision. Une interrogation à ChatGPT pourrait par exemple être ajoutée pour que soit générée, automatiquement, en fonction de l'explicabilité globale et locale, un texte sur lequel il pourrait s'appuyer...
 
 ### Tests et workflow
 
