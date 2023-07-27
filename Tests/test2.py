@@ -3,7 +3,7 @@ import requests
 
 @pytest.fixture
 def api_url():
-    return 'http://127.0.0.1:5000/update'
+    return 'https://mbcreditmodelapi.azurewebsites.net/update'
 
 def test_update_accept(api_url):
     data = {'data': {'client_id': 425433, 'CODE_GENDER': 'F'}}
