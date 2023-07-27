@@ -30,7 +30,8 @@ Choix de plusieurs modèles de classification :
 Pour chacun d'eux, une à deux techniques de gestion du déséquilibre des données :
 - SMOTE à chaque cross validation dans le cadre d'un pipeline, pour créer des nouveaux clients fictifs non solvables à partir de ceux connus avant l'optimisation des hyperparamètres des modèles avec RandomSearchCV
 - pour XGBoost et LigthGBM, les techniques de "class_weight" ou équivalent, intégrées dans les paramètres des modèles
-De même, pour chaque approche, l'optimisation du score AUC est d'abord recherchée, puis un nouveau score à minimser est créé, à partir des résultats obtenus pour chaque classe (avec la fonction de coût = 10*Faux positifs + Faux négatifs).  
+De même, pour chaque approche, l'optimisation du score AUC est d'abord recherchée, puis un nouveau score à minimser est créé, à partir des résultats obtenus pour chaque classe (avec la fonction de coût = 10*Faux positifs + Faux négatifs).
+
 Enfin, dans chaque cas, un calcul des prédictions sous forme de probabilité est réalisé afin de rechercher le meilleur seuil pour minimiser cette même fonction de coût.
 Au regard de l'ensemble des métriques, y compris les temps, et en comparant les ROC curves, le meilleur modèle est retenu : le modèle LightGBM avec paramétrage "class_weight" (hyperparamètres dans le Notebook et dans les mlruns).
 Un pipeline de transformation des features et de modélisation est recréé puis réentraîné et enfin enregistré avec Joblib.
