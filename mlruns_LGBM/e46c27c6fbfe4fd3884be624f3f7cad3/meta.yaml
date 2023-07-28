@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/micha/OneDrive/Bureau/Projets%20OC/Projet_7/mlruns/900046118485881433/e46c27c6fbfe4fd3884be624f3f7cad3/artifacts
+end_time: 1688397994485
+entry_point_name: ''
+experiment_id: '900046118485881433'
+lifecycle_stage: active
+run_id: e46c27c6fbfe4fd3884be624f3f7cad3
+run_name: Best_LGMClassifier
+run_uuid: e46c27c6fbfe4fd3884be624f3f7cad3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1688397987182
+status: 3
+tags: []
+user_id: micha

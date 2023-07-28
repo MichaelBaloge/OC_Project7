@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/micha/OneDrive/Bureau/Projets%20OC/Projet_7/mlruns/900046118485881433/19b1c7738ea247a5a0408dc387bcc7ac/artifacts
+deleted_time: 1688398051842
+end_time: 1688372700452
+entry_point_name: ''
+experiment_id: '900046118485881433'
+lifecycle_stage: deleted
+run_id: 19b1c7738ea247a5a0408dc387bcc7ac
+run_name: blushing-goose-524
+run_uuid: 19b1c7738ea247a5a0408dc387bcc7ac
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1688372696752
+status: 3
+tags: []
+user_id: micha
