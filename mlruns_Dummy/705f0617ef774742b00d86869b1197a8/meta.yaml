@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/micha/OneDrive/Bureau/Projets%20OC/Projet_7/mlruns/179104941129331487/705f0617ef774742b00d86869b1197a8/artifacts
+deleted_time: 1688398088527
+end_time: 1688391260432
+entry_point_name: ''
+experiment_id: '179104941129331487'
+lifecycle_stage: deleted
+run_id: 705f0617ef774742b00d86869b1197a8
+run_name: luminous-grouse-295
+run_uuid: 705f0617ef774742b00d86869b1197a8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1688391256855
+status: 3
+tags: []
+user_id: micha

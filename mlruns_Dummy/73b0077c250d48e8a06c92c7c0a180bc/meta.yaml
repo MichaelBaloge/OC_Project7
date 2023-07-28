@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/micha/OneDrive/Bureau/Projets%20OC/Projet_7/mlruns/179104941129331487/73b0077c250d48e8a06c92c7c0a180bc/artifacts
+deleted_time: 1688398088528
+end_time: 1688372008157
+entry_point_name: ''
+experiment_id: '179104941129331487'
+lifecycle_stage: deleted
+run_id: 73b0077c250d48e8a06c92c7c0a180bc
+run_name: handsome-hare-506
+run_uuid: 73b0077c250d48e8a06c92c7c0a180bc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1688372008073
+status: 4
+tags: []
+user_id: micha

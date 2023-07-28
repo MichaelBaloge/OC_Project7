@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/micha/OneDrive/Bureau/Projets%20OC/Projet_7/mlruns/179104941129331487/3c8e27e22986454c908125b11885b6af/artifacts
+end_time: 1688397114906
+entry_point_name: ''
+experiment_id: '179104941129331487'
+lifecycle_stage: active
+run_id: 3c8e27e22986454c908125b11885b6af
+run_name: DummyClassifier_ref
+run_uuid: 3c8e27e22986454c908125b11885b6af
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1688397109475
+status: 3
+tags: []
+user_id: micha
