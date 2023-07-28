@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/micha/OneDrive/Bureau/Projets%20OC/Projet_7/mlruns/242305211382367860/6b5e93d6e83243e898c74340a20f4c2d/artifacts
+deleted_time: 1688398039649
+end_time: 1688372657580
+entry_point_name: ''
+experiment_id: '242305211382367860'
+lifecycle_stage: deleted
+run_id: 6b5e93d6e83243e898c74340a20f4c2d
+run_name: dashing-dove-640
+run_uuid: 6b5e93d6e83243e898c74340a20f4c2d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1688372653995
+status: 3
+tags: []
+user_id: micha

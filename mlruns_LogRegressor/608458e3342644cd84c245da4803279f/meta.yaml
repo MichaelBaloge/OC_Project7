@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/micha/OneDrive/Bureau/Projets%20OC/Projet_7/mlruns/242305211382367860/608458e3342644cd84c245da4803279f/artifacts
+end_time: 1688397228961
+entry_point_name: ''
+experiment_id: '242305211382367860'
+lifecycle_stage: active
+run_id: 608458e3342644cd84c245da4803279f
+run_name: Best_LogReg_simple
+run_uuid: 608458e3342644cd84c245da4803279f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1688397223563
+status: 3
+tags: []
+user_id: micha
