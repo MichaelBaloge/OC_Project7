@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/micha/OneDrive/Bureau/Projets%20OC/Projet_7/mlruns/393957518336611577/0014c24ab85047f480738039ba41f864/artifacts
+deleted_time: 1688398060192
+end_time: 1688372739927
+entry_point_name: ''
+experiment_id: '393957518336611577'
+lifecycle_stage: deleted
+run_id: 0014c24ab85047f480738039ba41f864
+run_name: intrigued-shrimp-900
+run_uuid: 0014c24ab85047f480738039ba41f864
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1688372736493
+status: 3
+tags: []
+user_id: micha
