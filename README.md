@@ -85,7 +85,7 @@ Description de l'expérience utilisateur pour un client :
 
 NB : l'explicabilité n'est pas toujours évidente, le conseiller doit être formé pour bien comprendre la valeur des indicateurs ainsi que le sens des graphiques (ils ne sont pas tous pertinents...) et savoir restituer l'explication de la décision. Une interrogation à ChatGPT pourrait par exemple être ajoutée pour que soit générée, automatiquement, en fonction de l'explicabilité globale et locale, un texte sur lequel il pourrait s'appuyer...
 
-### Tests et workflow
+### Tests et workflows
 La plateforme d'hébergement choisie est **Azure Web App**.  
 Afin de mettre en place un **processus d'intégration/amélioration continues**, le code est hébergé sur des **repo Git distants** et le déploiement réalisé par les **actions Github** communiquant avec l'hébergeur. De cette manière, des modifications peuvent être réalisées puis contrôlées d'abord dans un **environnement virtuel local** défini, puis éventuellement déployées dans une **nouvelle branche** avant d'être envoyées à la branche principale.  
 Il a été décidé de séparer complètement le déploiement de l'API de celui de l'application et des projets Github distincts ont été créés :
