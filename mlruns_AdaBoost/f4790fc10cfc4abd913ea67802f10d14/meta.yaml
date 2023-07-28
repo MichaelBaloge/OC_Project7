@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/micha/OneDrive/Bureau/Projets%20OC/Projet_7/mlruns/719354937694971451/f4790fc10cfc4abd913ea67802f10d14/artifacts
+deleted_time: 1688398071089
+end_time: 1688372906641
+entry_point_name: ''
+experiment_id: '719354937694971451'
+lifecycle_stage: deleted
+run_id: f4790fc10cfc4abd913ea67802f10d14
+run_name: bedecked-crane-544
+run_uuid: f4790fc10cfc4abd913ea67802f10d14
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1688372902948
+status: 3
+tags: []
+user_id: micha

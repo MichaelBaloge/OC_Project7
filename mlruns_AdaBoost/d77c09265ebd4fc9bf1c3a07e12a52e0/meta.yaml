@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/micha/OneDrive/Bureau/Projets%20OC/Projet_7/mlruns/719354937694971451/d77c09265ebd4fc9bf1c3a07e12a52e0/artifacts
+end_time: 1688398017610
+entry_point_name: ''
+experiment_id: '719354937694971451'
+lifecycle_stage: active
+run_id: d77c09265ebd4fc9bf1c3a07e12a52e0
+run_name: Best_AdaBoostClassifier
+run_uuid: d77c09265ebd4fc9bf1c3a07e12a52e0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1688398012546
+status: 3
+tags: []
+user_id: micha
