@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import requests
 import numpy as np
 from matplotlib.lines import Line2D
+from io import BytesIO
 
 
 ## Fonctions utilisées ##
@@ -18,6 +19,11 @@ def get_client_ids():
 def get_features():
     response = requests.get(feat_url)
     return response.json()
+
+# fonction pour obtenir via l'API l'image de l'explicabilité globale
+def get_image():
+    response = requests.get(exp_url)
+    return BytesIO(response.content)
 
 # fonction pour obtenir via l'API les infos du client sélectionné
 def get_client_info(row_number):
@@ -46,7 +52,7 @@ def submit_data(dico):
 # fonction de callback de la sélection du client (entrée pour vérification de la validité)
 def callback1():
     st.session_state['client'] = True
-    st.session_state['btn'] = st.session_state['btn']
+    st.session_state['btn'] = False
 
 # fonction de callback du click button de validation (affichage des informations du client)
 def callback2():
@@ -67,12 +73,13 @@ def update_select():
 ## URL d'API et récupéraiton des données de base ###
 
 # URL de l'API Flask
-ids_url = 'http://127.0.0.1:5000/reflist'
-feat_url = 'http://127.0.0.1:5000/features'
-client_url = 'http://127.0.0.1:5000/clientinfo'
-predict_url = 'http://127.0.0.1:5000/predict'
-update_url = 'http://127.0.0.1:5000/update'
-featinfo_url = 'http://127.0.0.1:5000/featureinfo'
+ids_url = 'https://mbcreditmodelapi.azurewebsites.net/reflist'
+feat_url = 'https://mbcreditmodelapi.azurewebsites.net/features'
+exp_url = 'https://mbcreditmodelapi.azurewebsites.net/shap'
+client_url = 'https://mbcreditmodelapi.azurewebsites.net/clientinfo'
+predict_url = 'https://mbcreditmodelapi.azurewebsites.net/predict'
+update_url = 'https://mbcreditmodelapi.azurewebsites.net/update'
+featinfo_url = 'https://mbcreditmodelapi.azurewebsites.net/featureinfo'
 
 # Récupération de la liste des nouveaux clients
 test_ids = get_client_ids()
@@ -83,6 +90,9 @@ features = get_features()
 num_col = list(features['num'])
 cat_col = list(features['cat'])
 features = sorted(num_col + cat_col)
+
+# Récupération de l'image de l'explicabilité Shap
+shap_exp = get_image()
 
 
 ## Construction de l'application ##
@@ -322,7 +332,7 @@ if st.session_state['client']:
                     with col4:
                         st.markdown("<h5 style='text-align: center; '>Indicateurs les plus importants (Shap)</h5>", 
                             unsafe_allow_html=True)
-                        st.image('Shap_exp.png')
+                        st.image(shap_exp)
 
                     # feature importance locale avec lime
                     with col5:
