@@ -41,7 +41,7 @@ Pour **l'explicabilité globale, les Shap values des features** sont préférée
 S'agissant de **l'explicabilité locale**, la problématique réside dans le fait qu'en théorie, les nouveaux clients ne sont pas déjà connus. Ainsi, pour utiliser Shap, il faudrait recalculer systématiquement les Shap values sur le dataset d'entraînement, auquel on ajouterait le nouveau client, afin d'obtenir sa position. Cela nécessiterait un temps de calcul trop lourd pour une bonne expérience utilisateur. Par conséquent, **la méthode Lime**, qui permet de ne calculer l'explicabilité globale qu'une fois et d'effectuer l'explicabilité locale directement à partir de l'explainer obtenu est retenue pour l'application.
 
 ### Analyse du Data Drift
-Avec la librairie Evidency, le drift peut être mesuré pour **évaluer la pertinence du modèle dans le temps**. Cette analyse peut être effectuée à chaque fois qu'on enregistre un certain nombre de nouveaux clients (nombre ou période à déterminer). Ici on effectue l'analyse sur les données connues des 50 000 nouveaux clients que l'on compare aux 300 000 initiaux (références).  
+Avec la librairie **Evidently**, le drift peut être mesuré pour **évaluer la pertinence du modèle dans le temps**. Cette analyse peut être effectuée à chaque fois qu'on enregistre un certain nombre de nouveaux clients (nombre ou période à déterminer). Ici on effectue l'analyse sur les données connues des 50 000 nouveaux clients que l'on compare aux 300 000 initiaux (références).  
 Malgré une modification légèrement significative de la distribution des nouveaux clients comparée à celle des clients références pour 9 indicateurs, le score du drift reste très faible et l'on peut considérer qu'il n'y a pas de Data Drift dans notre cas présent, comme le montre le rapport, donc **pas besoin de chercher un nouveau modèle à entraîner**. On peut le "vérifier" intuitivement en regardant le "rang" des features concernées dans l'explicabilité globale.  
 A noter que dans notre cas, compte tenu du fait que la modélisation est effectuée sur 70 indicateurs, on a réduit les données comparées à ces indicateurs (il n'y a pas non plus de drift lorsque l'on les conserve tous (voir le deuxième rapport).
 
@@ -59,7 +59,7 @@ Concernant le script de l'API,** 7 "routes" sont mises en place** pour interagir
 **Trois méthodes GET** pour obtenir :
 - la liste des ids des nouveaux clients pour vérifier que le client est bien enregistré
 - la liste des features qui sont utilisées pour la modélisation. Si jamais le modèle devait être revu, cette liste pourrait être amenée à évoluer sans pour autant affecter le script de l'interface utilisateur.
-- l'image de l'explicabilté globale
+- l'image de l'explicabilté globale. A noter que pour un développement ultérieur plus approfondi, il serait préférable de récupérer les shap values sous forme de tableau à renvoyer.
 **Quatre méthodes POST** pour :
 - envoyer le numéro du client sélectionné et recevoir ses informations (données pour les indicateurs)
 - envoyer le numéro du client sélectionné et recevoir la prédiction (probabilité d'insolvabilité, décision, explicabilité Lime)
@@ -86,4 +86,11 @@ Description de l'expérience utilisateur pour un client :
 NB : l'explicabilité n'est pas toujours évidente, le conseiller doit être formé pour bien comprendre la valeur des indicateurs ainsi que le sens des graphiques (ils ne sont pas tous pertinents...) et savoir restituer l'explication de la décision. Une interrogation à ChatGPT pourrait par exemple être ajoutée pour que soit générée, automatiquement, en fonction de l'explicabilité globale et locale, un texte sur lequel il pourrait s'appuyer...
 
 ### Tests et workflow
+La plateforme d'hébergement choisie est **Azure Web App**.  
+Afin de mettre en place un **processus d'intégration/amélioration continues**, le code est hébergé sur des **repo Git distants** et le déploiement réalisé par les **actions Github** communiquant avec l'hébergeur. De cette manière, des modifications peuvent être réalisées puis contrôlées d'abord dans un **environnement virtuel local** défini, puis éventuellement déployées dans une **nouvelle branche** avant d'être envoyées à la branche principale.  
+Il a été décidé de séparer complètement le déploiement de l'API de celui de l'application et des projets Github distincts ont été créés :
+- pour l'API : https://github.com/MichaelBaloge/Project7_API
+- pour l'interface utilisateur : https://github.com/MichaelBaloge/Project7_Streamlit
 
+L'API est déployée (ou modifiée) après les vérifications en local (**tests Pytest** et affichages) puis les tests Pytest sont effectués pour contrôler le fonctionnement des méthodes POST en déploiement (les méthodes GET sont aisément contrôlables en affichant les pages relatives). Les scripts des test effectués sont contenus dans le dossier test.  
+Enfin, si les tests sont réussis, l'application Streamlit est déployée (ou modifiée) après s'être assuré que toutes les modifications ont été d'abord enregistrées, afin d'éviter les bugs éventuels au moment du changement de version.
