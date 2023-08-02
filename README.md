@@ -34,7 +34,7 @@ Pour chacun d'eux, une à deux techniques de **gestion du déséquilibre des don
 De même, pour chaque approche, **l'optimisation du score AUC** est d'abord recherchée, puis **un nouveau score à minimiser est créé**, à partir des résultats obtenus pour chaque classe avec la **fonction de coût = 10*Faux positifs + Faux négatifs**.
 Enfin, dans chaque cas, un calcul des **prédictions sous forme de probabilité** est réalisé afin de rechercher **le meilleur seuil pour minimiser cette même fonction de coût**.
 Au regard de l'ensemble des métriques, y compris les temps, et en comparant les ROC curves, le meilleur modèle est retenu : le modèle LightGBM avec paramétrage "class_weight" (hyperparamètres dans le Notebook et dans les mlruns).
-Un pipeline de transformation des features et de modélisation est recréé puis réentraîné et enfin enregistré avec Joblib.
+Un pipeline de transformation des features et de modélisation est recréé afin d'être enregistré avec Joblib.
 
 ### Explicabilité globale et locale
 Pour **l'explicabilité globale, les Shap values des features** sont préférées à l'explicabilité propre du modèle (feature_importance_), en raison de sa plus grande stabilité.
